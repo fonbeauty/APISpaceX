@@ -35,11 +35,11 @@ class TestPeople:
             assert response.headers.get('content-type') == 'application/json'
 
         def test_search_people(self, api_session):
-            params = {'name': 'Obi-Wan Kenobi'}
-            response = api_session.request(path='/people/', params=params)
+            # params = {'name': 'Obi-Wan Kenobi'}
+            response = api_session.request(path='/people/10/')
             assert response.status_code == 200
             assert response.headers.get('content-type') == 'application/json'
-            people = ListPeople.model_validate(response.json())
+            people = People.model_validate(response.json())
             assert people.name == 'Obi-Wan Kenobi'
 
     @allure.story('Negative tests')

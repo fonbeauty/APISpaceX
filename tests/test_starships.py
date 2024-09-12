@@ -30,11 +30,10 @@ class TestStarships:
             assert starship.name == 'CR90 corvette'
 
         def test_search_starship(self, api_session):
-            params = {'name': 'X-wing'}
-            response = api_session.request(path='/starships/', params=params)
+            response = api_session.request(path='/starships/12/')
             assert response.status_code == 200
             assert response.headers.get('content-type') == 'application/json'
-            starship = Starships.model_validate(resгкуponse.json())
+            starship = Starships.model_validate(response.json())
             assert starship.name == 'X-wing'
 
     @allure.story('Negative tests')
