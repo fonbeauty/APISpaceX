@@ -4,7 +4,10 @@ import logging
 from requests import Session, Response
 from requests.structures import CaseInsensitiveDict
 
-logger = logging.getLogger(__name__)
+from common.logging_config import produce_logger
+
+# logger = logging.getLogger(__name__)
+logger = produce_logger(__name__)
 
 
 def allure_request_logger(function):
